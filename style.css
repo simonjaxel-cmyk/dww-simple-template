@@ -1,14 +1,241 @@
-/* this is a CSS comment */
 
-/* :root is a pseudo element to store the variables (colors, spaces, etc) */
-:root{
-    --main-color: #313647;
-    --secondary-color: #FFF8D4;
-}
-
-
+/* On applique la police Space Grotesk sur tout le document (fonctionnalité trouvée grâce à gemini)*/
 body {
-    /* to use a variable content, just "call" it by its name */
-    background-color: var(--secondary-color);
+    font-family: 'Space Grotesk', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
 }
 
+
+/* Classes réutilisablles */
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; 
+}
+
+.flex-row-space-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+
+/* Centrage du tout et fixage des marges */
+.container {
+    max-width: 1000px;
+    margin: 0 auto; /* fonctionnalité centrée */
+    padding: 20px;
+}
+
+/* Bandeau gris tout en haut */
+.top-banner {
+    background-color: #e0e0e0;
+    text-align: center;
+    padding: 5px 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Utilisé pour faire ressortir les h2*/
+.section-title {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+/* Ligne noire entre les deux sections, modèle trouvé grâce à Gemini et taille arrangée ensuite */
+.section-divider {
+    border: none;
+    border-top: 2px solid #000;
+    margin: 40px 0;
+}
+
+
+/* Pareil que le container global mais spécifique aux cartes et à la flèche */
+.cards-row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center; /* Pour que la flèche soit centrée par rapport aux cartes */
+}
+
+/* Design des cartes */
+.show-card {
+    background-color: #f5f5f5; /* Code du gris clair */
+    border-radius: 12px; /* bords arrondis */
+    padding: 15px;
+    width: 200px;
+    display: flex;
+    flex-direction: column; /* Organise le contenu de la carte de haut en bas, option trouvée grâce à gemini après avoir fait une carte qui s'étalait */
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 15px 0;
+    text-align: center; 
+}
+
+/* Le petit bouton de prix orange */
+.price-btn {
+    background-color: #ff9900; 
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* Icône coeur proposée par gemini, taille arrangée ensuite */
+.heart-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Bouton rond noir pour passer à la suite */
+.next-arrow {
+    background-color: black;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Style des boutons de filtre*/
+.filter-pill {
+    border: 1px solid #ccc;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Style pour le filtre sélectionné (Musical ici, non cliquable) */
+.active-filter {
+    background-color: #888;
+    color: white;
+    border-color: #888;
+}
+
+/* Classes créées pour afficher plusieurs images cote a cote de facon cohérente*/
+.small-shows-row {
+    margin-top: 20px;
+}
+.small-show {
+    width: 100px;
+    text-align: center;
+}
+.small-img {
+    height: 100px; /* Image carrée plus petite */
+}
+
+.small-title {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+
+/* Transformer la carte de Wicked en "bouton cliquable" */
+.clickable-card {
+    border: none;
+    text-align: left;
+    font-family: inherit; /* Récupère la police Space Grotesk du parent, paramètre corrigé par Gemini pour le style du rendu */
+    cursor: pointer;
+}
+
+/* J'ai demandé à Gemini d'ajouter un effet quand on passe la souris pour montrer que la carte est cliquable */
+.clickable-card:hover {
+    transform: scale(1.02);
+}
+
+
+/* LA SECTION SUIVANTE, CONCERNANT LE POPOVER, EST GENEREE PAR IA (commentaires compris, avec comme modèle le code de ma page de base) APRES AVOIR
+PASSE TROP DE TEMPS A ESSAYER D'UTILISER SEULEMENT LA DOC OFFICIELLE DE L'ATTRIBUT "popover" (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#popover) */
+/* Le navigateur gère le positionnement de base de l'attribut popover, 
+   on a juste à styliser la boite et son fond (backdrop) */
+.modal-popover {
+    border: none;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 800px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    /* On le centre s'il n'est pas géré par défaut par le navigateur */
+    margin: auto; 
+}
+
+/*---- Le fond grisé derrière le popover quand il est ouvert ----*/
+.modal-popover::backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* Noir transparent */
+}
+
+/*---- Mise en page interne du popover ----*/
+.popover-layout {
+    align-items: flex-start; /* Aligne l'image et le texte en haut */
+    gap: 30px;
+}
+
+.large-img {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0; /* Empêche l'image de s'écraser si le texte est long */
+}
+
+/*---- Typographie spécifique à l'intérieur du popover ----*/
+.popover-details h2 {
+    margin-top: 0;
+    font-size: 24px;
+}
+
+.detail-text {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.underline { text-decoration: underline; }
+.italic { font-style: italic; color: #555; }
+
+.description {
+    margin: 20px 0;
+    font-size: 14px;
+    line-height: 1.5; /* Rend le long texte plus lisible */
+}
+
+/*---- Boutons d'horaires ----*/
+.time-pills {
+    flex-wrap: wrap; /* Si y a trop de dates, ça passe à la ligne */
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.time-pill {
+    border: 1px solid #ccc;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/*---- Gros bouton de réservation en bas ----*/
+.book-ticket-btn {
+    width: 100%; /* Prend toute la largeur disponible de la colonne de droite */
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.book-ticket-btn:hover {
+    background-color: #e68a00; /* Un orange un peu plus foncé au survol */
+}
