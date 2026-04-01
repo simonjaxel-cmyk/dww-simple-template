@@ -7,11 +7,9 @@
     
     <link rel="stylesheet" href="style.css">
     
-    <!-- Fonds trouvés grâce à Gemini pour le design global -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-    <!-- -->
 </head>
 <body>
 
@@ -24,67 +22,8 @@
         <section class="weekly-shows">
             <h2 class="section-title">SHOWING THIS WEEK</h2>
             
-            <div class="cards-row">
-                
-                <button class="show-card clickable-card" popovertarget="play-popover">
-                    <img src="https://makerslab.em-lyon.com/dww/data/shows/the-play-that-goes-wrong.jpg" alt="The play that goes wrong" class="show-image">
-                    <h3 class="card-title">The play that goes wrong</h3>
-                    
-                    <div class="card-bottom flex-row-space-between">
-                        <span class="price-btn">59€</span>
-                        <span class="heart-icon">♡</span>
-                    </div>
-                </button>
-
-                <div popover id="play-popover" class="modal-popover">
-                    <div class="popover-layout flex-row">
-                        
-                        <img src="https://makerslab.em-lyon.com/dww/data/shows/the-play-that-goes-wrong.jpg" alt="The play that goes wrong" class="img-placeholder large-img">
-                        
-                        <div class="popover-details">
-                            <h2>The play that goes wrong</h2>
-                            
-                            <p class="detail-text underline">Apollo Victoria Theatre,</p>
-                            <p class="detail-text">March 14 - May 31</p>
-                            <p class="detail-text italic">250 places, 2h15</p>
-                            
-                            <p class="description">
-                                The Cornley Drama Society are putting on a 1920s murder mystery, but as the title suggests, everything that can go wrong... does! The accident-prone thespians battle against all odds to make it through to their final curtain call.
-                            </p>
-
-                            <div class="time-pills flex-row">
-                                <span class="time-pill">Mar 14 - 18h</span>
-                                <span class="time-pill">Mar 14 - 21h</span>
-                                <span class="time-pill">Jeu 16 - 17h30</span>
-                            </div>
-
-                            <button class="book-ticket-btn">Book your ticket - 59€</button>
-                        </div>
-                    </div>
+            <div class="cards-row" id="cards-container">
                 </div>
-                <!-- Seule la première carte est cliquable -->
-                <article class="show-card">
-                    <img src="https://makerslab.em-lyon.com/dww/data/shows/wicked.jpg" alt="Wicked" class="show-image">
-                    <h3 class="card-title">Wicked</h3>
-                    <div class="card-bottom flex-row-space-between">
-                        <span class="price-btn">29€</span>
-                        <span class="heart-icon">♡</span>
-                    </div>
-                </article>
-
-                <article class="show-card">
-                    <img src="https://makerslab.em-lyon.com/dww/data/shows/dear-evan-hansen.jpg" alt="Dear Evan Hansen" class="show-image">
-                    <h3 class="card-title">Dear Evan Hansen</h3>
-                    <div class="card-bottom flex-row-space-between">
-                        <span class="price-btn">49€</span>
-                        <span class="heart-icon">♡</span>
-                    </div>
-                </article>
-
-                <div class="next-arrow">
-                    <span>></span>
-                </div>
-            </div>
         </section>
 
         <hr class="section-divider">
@@ -112,5 +51,7 @@
         </section>
 
     </main>
+    
+    <script src="script.js"></script>
 </body>
 </html>

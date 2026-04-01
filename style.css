@@ -1,12 +1,9 @@
-
-/* On applique la police Space Grotesk sur tout le document (fonctionnalité trouvée grâce à gemini)*/
 body {
     font-family: 'Space Grotesk', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #ffffff;
 }
-
 
 /* Classes réutilisablles */
 .flex-row {
@@ -22,11 +19,10 @@ body {
     align-items: center; 
 }
 
-
 /* Centrage du tout et fixage des marges */
 .container {
     max-width: 1000px;
-    margin: 0 auto; /* fonctionnalité centrée */
+    margin: 0 auto;
     padding: 20px;
 }
 
@@ -47,30 +43,38 @@ body {
     margin-bottom: 20px;
 }
 
-/* Ligne noire entre les deux sections, modèle trouvé grâce à Gemini et taille arrangée ensuite */
+/* Ligne noire entre les deux sections */
 .section-divider {
     border: none;
     border-top: 2px solid #000;
     margin: 40px 0;
 }
 
-
-/* Pareil que le container global mais spécifique aux cartes et à la flèche */
 .cards-row {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    align-items: center; /* Pour que la flèche soit centrée par rapport aux cartes */
+    align-items: center;
+    overflow-x: auto; /* Permet de scroller horizontalement si le JSON a beaucoup de spectacles ; proposé par l'IA intégrée à vscode*/
+    padding-bottom: 20px;
 }
 
 /* Design des cartes */
 .show-card {
-    background-color: #f5f5f5; /* Code du gris clair */
-    border-radius: 12px; /* bords arrondis */
+    background-color: #f5f5f5;
+    border-radius: 12px;
     padding: 15px;
-    width: 200px;
+    min-width: 200px; /* Changé en min-width pour que Flexbox garde la taille, correction apportée par l'IA intégrée à vscode */
     display: flex;
-    flex-direction: column; /* Organise le contenu de la carte de haut en bas, option trouvée grâce à gemini après avoir fait une carte qui s'étalait */
+    flex-direction: column; 
+}
+
+/* Ajout pour garantir que les images rentrent bien dans la carte */
+.show-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Coupe l'image proprement si elle n'est pas aux bonnes proportions, correction apportée par l'IA intégrée à vscode */
+    border-radius: 8px;
 }
 
 .card-title {
@@ -80,7 +84,6 @@ body {
     text-align: center; 
 }
 
-/* Le petit bouton de prix orange */
 .price-btn {
     background-color: #ff9900; 
     color: white;
@@ -89,17 +92,15 @@ body {
     font-weight: bold;
 }
 
-/* Icône coeur proposée par gemini, taille arrangée ensuite */
 .heart-icon {
     font-size: 20px;
     cursor: pointer;
 }
 
-/* Bouton rond noir pour passer à la suite */
 .next-arrow {
     background-color: black;
     color: white;
-    width: 40px;
+    min-width: 40px;
     height: 40px;
     border-radius: 50%; 
     display: flex;
@@ -118,23 +119,23 @@ body {
     cursor: pointer;
 }
 
-/* Style pour le filtre sélectionné (Musical ici, non cliquable) */
 .active-filter {
     background-color: #888;
     color: white;
     border-color: #888;
 }
 
-/* Classes créées pour afficher plusieurs images cote a cote de facon cohérente*/
 .small-shows-row {
     margin-top: 20px;
 }
+
 .small-show {
     width: 100px;
     text-align: center;
 }
+
 .small-img {
-    height: 100px; /* Image carrée plus petite */
+    height: 100px;
 }
 
 .small-title {
@@ -142,53 +143,45 @@ body {
     margin-top: 8px;
 }
 
-
-/* Transformer la carte de Wicked en "bouton cliquable" */
+/* Bouton cliquable */
 .clickable-card {
     border: none;
     text-align: left;
-    font-family: inherit; /* Récupère la police Space Grotesk du parent, paramètre corrigé par Gemini pour le style du rendu */
+    font-family: inherit; 
     cursor: pointer;
 }
 
-/* J'ai demandé à Gemini d'ajouter un effet quand on passe la souris pour montrer que la carte est cliquable */
 .clickable-card:hover {
     transform: scale(1.02);
 }
 
-
-/* LA SECTION SUIVANTE, CONCERNANT LE POPOVER, EST GENEREE PAR IA (commentaires compris, avec comme modèle le code de ma page de base) APRES AVOIR
-PASSE TROP DE TEMPS A ESSAYER D'UTILISER SEULEMENT LA DOC OFFICIELLE DE L'ATTRIBUT "popover" (https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#popover) */
-/* Le navigateur gère le positionnement de base de l'attribut popover, 
-   on a juste à styliser la boite et son fond (backdrop) */
+/* POPOVER */
 .modal-popover {
     border: none;
     border-radius: 12px;
     padding: 30px;
     max-width: 800px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-    /* On le centre s'il n'est pas géré par défaut par le navigateur */
     margin: auto; 
 }
 
-/*---- Le fond grisé derrière le popover quand il est ouvert ----*/
 .modal-popover::backdrop {
-    background-color: rgba(0, 0, 0, 0.5); /* Noir transparent */
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 
-/*---- Mise en page interne du popover ----*/
 .popover-layout {
-    align-items: flex-start; /* Aligne l'image et le texte en haut */
+    align-items: flex-start; 
     gap: 30px;
 }
 
 .large-img {
     width: 300px;
     height: 300px;
-    flex-shrink: 0; /* Empêche l'image de s'écraser si le texte est long */
+    flex-shrink: 0; 
+    object-fit: cover; /* Ajout pour que la grosse image soit belle */
+    border-radius: 8px;
 }
 
-/*---- Typographie spécifique à l'intérieur du popover ----*/
 .popover-details h2 {
     margin-top: 0;
     font-size: 24px;
@@ -205,12 +198,11 @@ PASSE TROP DE TEMPS A ESSAYER D'UTILISER SEULEMENT LA DOC OFFICIELLE DE L'ATTRIB
 .description {
     margin: 20px 0;
     font-size: 14px;
-    line-height: 1.5; /* Rend le long texte plus lisible */
+    line-height: 1.5; 
 }
 
-/*---- Boutons d'horaires ----*/
 .time-pills {
-    flex-wrap: wrap; /* Si y a trop de dates, ça passe à la ligne */
+    flex-wrap: wrap; 
     gap: 10px;
     margin-bottom: 25px;
 }
@@ -222,9 +214,8 @@ PASSE TROP DE TEMPS A ESSAYER D'UTILISER SEULEMENT LA DOC OFFICIELLE DE L'ATTRIB
     font-size: 12px;
 }
 
-/*---- Gros bouton de réservation en bas ----*/
 .book-ticket-btn {
-    width: 100%; /* Prend toute la largeur disponible de la colonne de droite */
+    width: 100%; 
     background-color: #ff9900;
     color: white;
     border: none;
@@ -237,5 +228,5 @@ PASSE TROP DE TEMPS A ESSAYER D'UTILISER SEULEMENT LA DOC OFFICIELLE DE L'ATTRIB
 }
 
 .book-ticket-btn:hover {
-    background-color: #e68a00; /* Un orange un peu plus foncé au survol */
+    background-color: #e68a00; 
 }
