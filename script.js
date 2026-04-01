@@ -2,7 +2,7 @@ const myURL = "https://makerslab.em-lyon.com/dww/data/shows.json";
 
 // L'ensemble a été réalisé en reprenant exactement les mêmes syntaxes que votre exemple en cours, avec petit à petit des modifications persos. Comme je ne connais pas JavaScript, les modifications perso sont de mon initiative mais la méthode/syntaxe correspondante est donnée par Gemini (moyen le plus rapide pour moi d'apprendre)
 
-// Fonction pour récupérer la donnée
+// Fonction pour récupérer les données
 const getData = async (doStuffs) => {
     try {
         const response = await fetch(myURL);
